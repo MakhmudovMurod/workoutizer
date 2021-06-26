@@ -36,7 +36,7 @@ def wkz():
     help="Mandatory command to initialize workoutizer. This fetches the static files, creates the database, "
     "applies the required migrations and inserts the demo activities."
 )
-def init(demo):
+def init(demo: bool):
     _init(import_demo_activities=demo)
 
 
@@ -127,7 +127,7 @@ def _build_home() -> None:
         Path(TRACKS_DIR).mkdir(exist_ok=True)
 
 
-def _init(import_demo_activities=False):
+def _init(import_demo_activities: bool = False):
     _build_home()
     if Path(WORKOUTIZER_DB_PATH).is_file():
         execute_from_command_line(["manage.py", "check"])
